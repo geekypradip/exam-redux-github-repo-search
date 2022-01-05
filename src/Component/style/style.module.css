@@ -5,3 +5,14 @@
   justify-content: center;
   align-items: center;
 }
+.inputHolder {
+  /* background: red; */
+  display: flex;
+  width: 60% !important;
+  justify-content: space-around;
+  margin: auto !important;
+  margin-top: 2% !important;
+}
+.inputFiled {
+  width: 70%;
+}

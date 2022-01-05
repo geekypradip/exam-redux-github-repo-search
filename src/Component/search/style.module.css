@@ -1,0 +1,22 @@
+.cardContainer {
+  /* background: red; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.dp {
+  width: 70px;
+  text-align: center;
+}
+.dp img {
+  width: 100%;
+  border-radius: 50%;
+}
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 200px; */
+  background: rgb(228, 222, 222);
+  margin: 2%;
+}

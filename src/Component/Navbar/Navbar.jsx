@@ -33,9 +33,7 @@ export default function Navbar() {
      <Link to="/" className={styles.navLink}>
              <Button color="inherit"> Home  </Button>
     </Link> 
-    <Link to="/search" className={styles.navLink}>
-             <Button color="inherit">   search  </Button>
-    </Link>  
+     
       <Link to={authChecker?"/":"/login"} className={styles.navLink}>
           <Button color="inherit">Login</Button>
           

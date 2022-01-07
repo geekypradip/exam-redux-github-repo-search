@@ -23,7 +23,8 @@ export default function Navbar() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={styles.naV_container}>
+      <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
          
@@ -41,5 +42,7 @@ export default function Navbar() {
         </Toolbar>
       </AppBar>
     </div>
+    </div>
+    
   );
 }

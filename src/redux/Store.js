@@ -4,10 +4,11 @@
 //     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 // export default Store;
 
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import rootReducer from "./combineReducers";
-
-const Store=createStore(rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+import  thunk  from "redux-thunk";
+import {composeWithDevTools} from "redux-devtools-extension"
+const Store=createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)) 
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     );
     export default Store;

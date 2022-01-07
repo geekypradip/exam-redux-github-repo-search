@@ -1,8 +1,30 @@
-import { GETREPO } from "./actionType"
 
-export const GetRepo=(query)=>{
+
+// export const GetRepo=(query)=>{
+//     return{
+//         type:GETREPO,
+//         payload:query
+//     }
+// }
+
+import { FETCHING_REPO, FETCH_REPO_FALIURE, FETCH_REPO_SUCCESS } from "./actionType"
+
+
+
+export  const FetchingRepo=()=>{
     return{
-        type:GETREPO,
-        payload:query
+        type:FETCHING_REPO
+    }
+}
+export  const FetchRepoSuccess=(payload)=>{
+    return{
+        type:FETCH_REPO_SUCCESS,
+        payload:payload
+    }
+}
+export const FetchRepoFaliure=(error)=>{
+    return{
+        type:FETCH_REPO_FALIURE,
+        error:error
     }
 }

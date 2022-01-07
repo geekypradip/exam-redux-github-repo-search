@@ -21,8 +21,11 @@ console.log(authChecker)
                <Route exact path="/login">
                    <Login/>
                </Route>
-               <Route exact path="/search">
+               <Route exact path="/search/q=:query">
                  <Search/>
+               </Route>
+               <Route>
+                 <div>Page Not Found</div>
                </Route>
            </Switch>
        

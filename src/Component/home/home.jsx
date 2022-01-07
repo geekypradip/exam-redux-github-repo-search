@@ -1,12 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import styles from '../style/style.module.css'
-import { getRepo } from '../api/apiRequest';
-import { useDispatch } from 'react-redux';
-import { GetRepo } from '../../redux/repoSearch/action/action';
+// import { FetchApi} from '../api/apiRequest';
+// import { useDispatch } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -18,16 +17,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home() {
   const [inputvalue,setInputValue]=useState("")
-  const dispach=useDispatch();
+  // const dispach=useDispatch();
    function  handleRequest(){
-    getRepo(inputvalue).then((res)=>{
-      // console.log(res);
-      dispach(GetRepo(res.data.items))
-      
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
+    //  console.log("in function")
+    if(!inputvalue)
+    alert("please enter something..")
+   
+  //  dispach(FetchApi(inputvalue));   
   }
   const classes = useStyles();
   return (
@@ -38,7 +34,7 @@ export default function Home() {
             onChange={(e)=>setInputValue(e.target.value)}
       className={styles.inputFiled}/>
 
-<Link to="/search" className={styles.navLink}>
+<Link to={inputvalue?`/search/q=${inputvalue}`:`/`} className={styles.navLink}>
 <Button variant="contained" color="primary" className={styles.inputButton}
       onClick={()=>handleRequest()}>
               Search

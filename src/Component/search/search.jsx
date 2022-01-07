@@ -1,12 +1,17 @@
 import styles from "./style.module.css"
 import { useSelector } from "react-redux";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { FetchApi} from '../api/apiRequest';
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import LoadingScreen from 'react-loading-screen';
+import PaginationComponent from "../pagination/pagination";
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -25,14 +30,34 @@ const useStyles = makeStyles({
 });
 
 export default function Search() {
+  const dispach=useDispatch();
+  const {query}=useParams();
+  const [page,setPage]=useState(0)
+  useEffect(()=>{
+    dispach(FetchApi(query,page))
+  },[page])
     const repos=useSelector((state)=>state.gitrepo);
-    console.log(repos)
+    console.log(repos.loading)
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
-
+  // const bull = <span className={classes.bullet}>•</span>;
+let handlePagination=(state)=>{
+  //have to do  something...
+  if(page!==state)
+  setPage(state)
+//  console.log(state)
+}
   return (
-      <div className={styles.cardContainer}> {
-       repos.map(item=>
+
+<LoadingScreen
+    loading={repos.loading}
+    bgColor='#f1f1f1'
+    spinnerColor='#9ee5f8'
+    textColor='#676767'
+    // logoSrc='Octocat.png'
+    text='Please Wait'
+  > 
+   <div className={styles.cardContainer}> {
+       repos.item.map(item=>
         <div key={item.id} className={styles.card}>
             <Card className={classes.root}>
         <CardContent>
@@ -69,10 +94,13 @@ export default function Search() {
 
 
         )
+        
           }
+        
           
       </div>
-     
-   
+      <PaginationComponent handlePagination={handlePagination}/>
+  </LoadingScreen>
+
   );
 }
